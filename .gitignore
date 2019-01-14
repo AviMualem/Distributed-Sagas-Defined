@@ -39,6 +39,12 @@ jspm_packages/
 # TypeScript v1 declaration files
 typings/
 
+#compiled artifacts
+dist
+
+#mocha test report
+mochawesome-report
+
 # Optional npm cache directory
 .npm
 

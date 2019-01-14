@@ -1,0 +1,8 @@
+FROM node:10-alpine
+RUN npm install typescript -g
+COPY . /app
+WORKDIR /app
+RUN npm install && tsc -p tsconfig.build.json
+RUN rm -r /app/src
+EXPOSE 3000
+CMD ["node", "dist/main.js"]

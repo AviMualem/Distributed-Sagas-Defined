@@ -1,0 +1,85 @@
+{
+  "name": "testing2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "coverage": "nyc mocha --opts test/mochaForNyc.opts"
+  },
+  "nyc": {
+    "all": true,
+    "watermarks": {
+      "lines": [
+        40,
+        95
+      ],
+      "functions": [
+        40,
+        95
+      ],
+      "branches": [
+        0,
+        95
+      ],
+      "statements": [
+        40,
+        95
+      ]
+    },
+    "exclude": [
+      "dist/*",
+      "coverage/*",
+      "test/**.ts",
+      "node_modules/*",
+      "**/*/*.spec.ts"
+    ],
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ],
+    "compilers": [
+      "ts-node/register"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/mocha": "^5.2.5",
+    "@types/mongoose": "^5.3.5",
+    "azure-sb": "^0.10.6",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "dotenv": "^6.2.0",
+    "istanbul": "^0.4.5",
+    "kafka-node": "^3.0.1",
+    "mocha": "^5.2.0",
+    "mongoose": "^5.3.16",
+    "nyc": "^13.1.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "source-map-support": "^0.5.9",
+    "thread-sleep": "^2.1.0",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^7.0.1",
+    "typemoq": "^2.1.0",
+    "typescript": "^3.1.6",
+    "uuid4": "^1.1.4"
+  },
+  "devDependencies": {
+    "mochawesome": "^3.1.1"
+  }
+}
