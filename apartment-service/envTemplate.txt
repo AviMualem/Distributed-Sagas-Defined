@@ -1,0 +1,2 @@
+# the following config should be saved in project root file name .env .
+mongo_connection_string=xxx

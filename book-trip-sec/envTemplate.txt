@@ -1,0 +1,3 @@
+# the following config should be saved in project root file name .env .
+mongo_connection_string=xxx
+AZURE_SERVICEBUS_CONNECTION_STRING=xxx
