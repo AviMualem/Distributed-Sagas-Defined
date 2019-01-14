@@ -1022,13 +1022,13 @@ describe('testing 3 services saga execution in compensation mode.', () => {
     expect(carResponse).equal(200);
     //await carServiceInteractionDetails.LogTransactionCommunicationEndedWithHttpCode(200);
     await carServiceInteractionDetails.LogCompensationCommunicationStartedEvent();
-    await carServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+    await carServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
     
     await apartmentServiceInteractionDetails.LogTransactionCommunicationStartedEvent();
     const apartmentResponse = await apartmentServiceInteractionDetails.InvokeTransactionLogicAndLogCommunicationEndedEvent();
     expect(apartmentResponse).equal(200);
     await apartmentServiceInteractionDetails.LogCompensationCommunicationStartedEvent();
-    await apartmentServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+    await apartmentServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
 
     await restaurantServiceInteraction.LogTransactionCommunicationStartedEvent();
     const restaurantRes = await restaurantServiceInteraction.InvokeTransactionLogicAndLogCommunicationEndedEvent();
@@ -1111,13 +1111,13 @@ describe('testing 3 services saga execution in compensation mode.', () => {
     const carResponse =  await carServiceInteractionDetails.InvokeTransactionLogicAndLogCommunicationEndedEvent()
     expect(carResponse).equal(200);
     await carServiceInteractionDetails.LogCompensationCommunicationStartedEvent();
-    await carServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+    await carServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
     
     await apartmentServiceInteractionDetails.LogTransactionCommunicationStartedEvent();
     const apartmentRes = await apartmentServiceInteractionDetails.InvokeTransactionLogicAndLogCommunicationEndedEvent();
     expect(apartmentRes).equal(200);
     await apartmentServiceInteractionDetails.LogCompensationCommunicationStartedEvent();
-    await apartmentServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+    await apartmentServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
     
     await restaurantServiceInteraction.LogTransactionCommunicationStartedEvent();
     const restaurantRes = await restaurantServiceInteraction.InvokeTransactionLogicAndLogCommunicationEndedEvent();
@@ -1214,7 +1214,7 @@ describe('testing 3 services saga execution in compensation mode.', () => {
     const carResponse = await carServiceInteractionDetails.InvokeTransactionLogicAndLogCommunicationEndedEvent();
     expect(carResponse).equal(200);
     await carServiceInteractionDetails.LogCompensationCommunicationStartedEvent();
-    await carServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+    await carServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
 
     await apartmentServiceInteractionDetails.LogTransactionCommunicationStartedEvent();
     const apartmentResponse = await apartmentServiceInteractionDetails.InvokeTransactionLogicAndLogCommunicationEndedEvent();
@@ -1222,7 +1222,7 @@ describe('testing 3 services saga execution in compensation mode.', () => {
     await apartmentServiceInteractionDetails.LogCompensationCommunicationStartedEvent();
 
 
-    await apartmentServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+    await apartmentServiceInteractionDetails.InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
     
     await restaurantServiceInteraction.LogTransactionCommunicationStartedEvent();
     const restaurantResponse = await restaurantServiceInteraction.InvokeTransactionLogicAndLogCommunicationEndedEvent();

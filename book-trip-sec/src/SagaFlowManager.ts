@@ -55,7 +55,7 @@ export async function InvokeSagaTransactionsLogic(serviceDetails:ServiceInteract
       try
       {
         await serviceDetails[j].LogCompensationCommunicationStartedEvent();
-        await serviceDetails[j].InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+        await serviceDetails[j].InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
       }
       catch
       {
@@ -118,13 +118,13 @@ export async function InvokeSagaBackwordsRecoveryLogicFinal(sagaId:string, servi
               if(compensationCommunicationStartedEventExist)
               {
                 // Compenstaion communication allready been initiated. so now it just need to be replayed again. 
-                await serviceDetails[i].InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+                await serviceDetails[i].InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
               }
               else if (transactionEndedWithSuccessfulHttpCode)
               {
                 // service has a transactionCommunication ended with http code 200 and compensation is being invoked for the first time.
                 await serviceDetails[i].LogCompensationCommunicationStartedEvent();
-                await serviceDetails[i].InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+                await serviceDetails[i].InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
               }
               else 
               {
@@ -135,7 +135,7 @@ export async function InvokeSagaBackwordsRecoveryLogicFinal(sagaId:string, servi
                 {
                   //compensation for the first time.
                   await serviceDetails[i].LogCompensationCommunicationStartedEvent();
-                  await serviceDetails[i].InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse();
+                  await serviceDetails[i].InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
                 } 
               }
           }

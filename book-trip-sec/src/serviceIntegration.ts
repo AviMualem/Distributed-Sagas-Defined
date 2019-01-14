@@ -39,7 +39,7 @@ export class ServiceInteractionManager
       await sagaStepModel.create([{sagaId: this.sagaId, serviceName:this.serviceName, status: 'compensationCommunicationStarted', date:new Date().toISOString()}]);
     } 
 
-    public async InvokeCompensationLogicAndLogCompensationCommunicationEndedEventOnSuccessfulResponse() : Promise<any>
+    public async InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent() : Promise<any>
     {
       const httpResCode = await InvokeHttpPostMethod(this.compensationHttpRequest.Uri,this.compensationHttpRequest.JsonBody);
       if(httpResCode === 200)
