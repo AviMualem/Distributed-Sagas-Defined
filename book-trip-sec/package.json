@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
-    "coverage": "nyc mocha --opts test/mochaForNyc.opts"
+    "coverage": "nyc mocha --opts test/mochaForNyc.opts",
+    "test": "mocha -R mochawesome"
   },
   "nyc": {
     "all": true,
