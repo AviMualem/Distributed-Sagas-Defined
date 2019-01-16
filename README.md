@@ -1,9 +1,9 @@
 # Distributed-Sagas-Defined  
 This is where the distributed magic happens.  
-This repository contains implementaion for a SEC component.  
+This repository contains implementaion for a generic saga execution coordinator.  
 
-# Prerequisites:  
-## Creating a local mongodb replica set  
+## Prerequisites:  
+### Creating a local mongodb replica set  
 Due to the fact the services composing the saga needs to be idempotent in requests they are processing  
 they need to be based a persistency solution that supports transactions.  
 
