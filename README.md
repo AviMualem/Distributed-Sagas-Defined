@@ -4,7 +4,11 @@ This repository contains implementaion for a SEC component.
 
 # Prerequisites:  
 ## Creating a local mongodb replica set  
-we will create a mongodb replica set named "rs0" for the purpose of running our solution.  
+Due to the fact the services composing the saga needs to be idempotent in requests they are processing  
+they need to be based a persistency solution that supports transactions.  
+MongoDB 4.0 which is being used in the implementation supports transacion but it requires to be deployed in replica set  
+in order to do so.  
+We will create a mongodb replica set named "rs0" for the purpose of running our solution.  
 cluster will have 3 nodes, and docker will be used to create the entire cluster.  
 
 ### Creating 3 mongo nodes:  
