@@ -1,6 +1,6 @@
 # Distributed-Sagas-Defined  
 This is where the distributed magic happens.  
-This repository contains implementaion for a generic saga execution coordinator.  
+This repository contains implementaion for a generic saga execution coordinator written in TypeScript.  
 
 ## Prerequisites:  
 ### Creating a local mongodb replica set  
