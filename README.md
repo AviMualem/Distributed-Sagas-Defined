@@ -38,6 +38,7 @@ config = {
   
 // Applying the config.  
 rs.initiate(config)   
+
 // checking replica set is functioning.  
 rs.status()  
 
