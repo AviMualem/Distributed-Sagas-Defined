@@ -9,9 +9,9 @@ cluster will have 3 nodes, and docker will be used to create the entire cluster.
 
 ### Creating 3 mongo nodes:
 docker network create saga-mongo
-docker run --name mongo-node1 -d -p 37017:37017 --net saga-mongo-network mongo --replSet "rs0" --port 37017
-docker run --name mongo-node2 -d -p 37018:37018 --net saga-mongo-network mongo --replSet "rs0" --port 37018
-docker run --name mongo-node3 -d -p 37019:37019 --net saga-mongo-network mongo --replSet "rs0" --port 37019
+docker run --name mongo-node1 -d -p 37017:37017 --net saga-mongo-network mongo --replSet "rs0" --port 37017\
+docker run --name mongo-node2 -d -p 37018:37018 --net saga-mongo-network mongo --replSet "rs0" --port 37018\
+docker run --name mongo-node3 -d -p 37019:37019 --net saga-mongo-network mongo --replSet "rs0" --port 37019\
 
 ### creating the replica set config
 docker exec -it mongo-node1 mongo --port 37017
@@ -35,6 +35,6 @@ config = {
   }
   
 // Applying the config.
-rs.initiate(config)
+rs.initiate(config)\
 // checking replica set is functioning.
 rs.status()
