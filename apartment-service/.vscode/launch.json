@@ -41,7 +41,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "RunMyNestApp",
+            "name": "Debug-Apartment-Service",
             "cwd": "${workspaceRoot}",
             "args": [ "${workspaceRoot}\\src\\main.ts"],
             "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
