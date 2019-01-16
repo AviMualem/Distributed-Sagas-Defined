@@ -7,8 +7,8 @@ This repository contains implementaion for a SEC component.
 we will create a mongodb replica set named "rs0" for the purpose of running our solution.  
 cluster will have 3 nodes, and docker will be used to create the entire cluster.  
 
-### Creating 3 mongo nodes:
-docker network create saga-mongo
+### Creating 3 mongo nodes:  
+docker network create saga-mongo  
 docker run --name mongo-node1 -d -p 37017:37017 --net saga-mongo-network mongo --replSet "rs0" --port 37017  
 docker run --name mongo-node2 -d -p 37018:37018 --net saga-mongo-network mongo --replSet "rs0" --port 37018  
 docker run --name mongo-node3 -d -p 37019:37019 --net saga-mongo-network mongo --replSet "rs0" --port 37019  
