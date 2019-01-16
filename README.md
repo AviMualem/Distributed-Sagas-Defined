@@ -59,6 +59,7 @@ Use the following connection string structure to connect to the replica set:
 
 mongodb://mongo-node1:37017,mongo-node2:37018,mongo-node3:37019/?3t.uriVersion=2&3t.connection.name=ConnectionName&readPreference=primary&3t.sharded=true&3t.connectionMode=multi
 
+### Creating a database and composing a connection string for the code.
 Create a database with any name you want and use the following connection string in the mongo_connection_string env variable  
 which is defined in the .env file.  
 mongodb://localhost:37017,localhost:37018,localhost:37019/YourDbName?replicaSet=rs0
