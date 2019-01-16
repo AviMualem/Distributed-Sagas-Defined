@@ -43,7 +43,7 @@ rs.initiate(config)
 rs.status()  
 
 ### Editing host file:  
-Add the following entries to your host file in order to properly communicate with the replica set.
+Add the following entries to your host file in order to properly communicate with the replica set.  
 127.0.0.1 mongo-node1  
 127.0.0.1 mongo-node2  
 127.0.0.1 mongo-node3  
