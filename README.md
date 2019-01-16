@@ -1,5 +1,5 @@
 # Distributed-Sagas-Defined  
-This is where the distributed magic happens.  :scream: :scream: :scream:  
+:scream: This is where the distributed magic happens.  :scream:   
 
 This repository contains implementaion for a generic saga execution coordinator written in TypeScript. 
 
