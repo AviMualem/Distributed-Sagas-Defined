@@ -79,13 +79,13 @@ Swagger page: http://localhost:3000/api/
 npm install  
 npm start  
 vs code debug config name: Debug-Apartment-Service  
-Api port: 3000    
+Api port: 3001    
 Swagger page: http://localhost:3001/api/  
 
 ### Restaurant Service:  
 npm install  
 npm start  
 vs code debug config name: Debug-Restaurant-Service  
-Api port: 3000    
+Api port: 3002    
 Swagger page: http://localhost:3002/api/  
 
