@@ -91,7 +91,7 @@ Api port: 3002
 Swagger page: http://localhost:3002/api/  
 
 ### Book a trip SEC Service:
-npm install
-npm run coverage - istanbul coverage report
-npm run test - mocha test with html report 
+npm install  
+npm run coverage - istanbul coverage report   
+npm run test - mocha test with html report   
 
