@@ -15,6 +15,7 @@ docker run --name mongo-node3 -d -p 37019:37019 --net saga-mongo-network mongo -
 
 ### creating the replica set config
 docker exec -it mongo-node1 mongo --port 37017
+
 config = {
       "_id" : "rs0",
       "members" : [
