@@ -62,4 +62,30 @@ mongodb://mongo-node1:37017,mongo-node2:37018,mongo-node3:37019/?3t.uriVersion=2
 ### Creating a database and composing a connection string for the code.
 Create a database with any name you want and use the following connection string in the mongo_connection_string env variable  
 which is defined in the .env file.  
-mongodb://localhost:37017,localhost:37018,localhost:37019/YourDbName?replicaSet=rs0
+mongodb://localhost:37017,localhost:37018,localhost:37019/YourDbName?replicaSet=rs0  
+
+## Running & Debugging Services:  
+every service has envtemplate file that represent the needed environment variable definitons rquired for the code.  
+Create a .env file within the project root folder with your desired config.  
+
+### Car Service:  
+npm install  
+npm start  
+vs code debug config name: Debug-Car-Service  
+Api port: 3000    
+Swagger page: http://localhost:3000/api/  
+
+### Apartment Service:  
+npm install  
+npm start  
+vs code debug config name: Debug-Apartment-Service  
+Api port: 3000    
+Swagger page: http://localhost:3001/api/  
+
+### Restaurant Service:  
+npm install  
+npm start  
+vs code debug config name: Debug-Restaurant-Service  
+Api port: 3000    
+Swagger page: http://localhost:3002/api/  
+
