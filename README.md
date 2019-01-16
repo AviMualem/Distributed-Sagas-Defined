@@ -57,7 +57,7 @@ Add the following entries to your host file in order to properly communicate wit
 ### Connecting to the replica set    
 Use the following connection string structure to connect to the replica set:  
 
-mongodb://mongo-node1:37017,mongo-node2:37018,mongo-node3:37019/?3t.uriVersion=2&3t.connection.name=docker-rs&readPreference=primary&3t.sharded=true&3t.connectionMode=multi
+mongodb://mongo-node1:37017,mongo-node2:37018,mongo-node3:37019/?3t.uriVersion=2&3t.connection.name=ConnectionName&readPreference=primary&3t.sharded=true&3t.connectionMode=multi
 
 Create a database with any name you want and use the following connection string in the mongo_connection_string env variable  
 which is defined in the .env file.  
