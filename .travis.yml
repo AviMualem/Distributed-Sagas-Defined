@@ -8,7 +8,7 @@ before_script:
   - nvm use 8
   - docker-compose up -d
   - sleep 15
-  - docker exec -ti localmongo1 mongo --eval 'config={"_id":"rs0","members":[{"_id":0,"host":"localmongo1:37017"},{"_id":1,"host":"localmongo2:37018"},{"_id":2,"host":"localmongo3:37019"}]}; rs.initiate(config)'
+  - docker exec -ti localmongo1 mongo --port 37017 --eval 'config={"_id":"rs0","members":[{"_id":0,"host":"localmongo1:37017"},{"_id":1,"host":"localmongo2:37018"},{"_id":2,"host":"localmongo3:37019"}]}; rs.initiate(config)'
   - bash pre-test.sh
   - npm install -g typescript@3.0
   - cd ${TRAVIS_BUILD_DIR}/car-service 
