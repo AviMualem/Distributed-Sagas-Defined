@@ -4,6 +4,8 @@ services:
   - docker
 
 before_script:
+  - nvm install 8
+  - nvm use 8
   - docker-compose up -d
   - sleep 15
   - bash pre-test.sh
