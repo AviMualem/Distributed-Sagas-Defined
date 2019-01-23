@@ -1,5 +1,11 @@
 language: nodejs
 
+addons:
+  hosts:
+    - localmongo1
+    - localmongo2
+    - localmongo3
+
 services:
   - docker
 
