@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 services:
   mongo1:
     hostname: mongo1
