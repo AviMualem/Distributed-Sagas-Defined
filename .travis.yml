@@ -1,0 +1,10 @@
+language: nodejs
+
+services:
+  - docker
+
+before_script:
+  - docker-compose up
+ 
+script:
+  - ping localmongo1
