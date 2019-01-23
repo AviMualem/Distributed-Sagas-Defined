@@ -42,9 +42,6 @@ typings/
 #compiled artifacts
 dist
 
-# packcge-lock
-package-lock.json
-
 #mocha test report
 mochawesome-report
 
