@@ -5,6 +5,8 @@ services:
 
 before_script:
   - docker-compose up -d
+  - sleep 15
+  - bash pre-test.sh
  
 script:
-  - ping localmongo1
+  - echo hello
