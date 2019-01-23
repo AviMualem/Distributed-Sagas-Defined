@@ -15,7 +15,7 @@ We will create a mongodb replica set named "rs0" for the purpose of running our 
 cluster will have 3 nodes, and docker will be used to create the entire cluster.  
 
 ### Creating 3 mongo nodes:  
-docker network create saga-mongo  
+docker network create saga-mongo-network  
 docker run --name mongo-node1 -d -p 37017:37017 --net saga-mongo-network mongo --replSet "rs0" --port 37017  
 docker run --name mongo-node2 -d -p 37018:37018 --net saga-mongo-network mongo --replSet "rs0" --port 37018  
 docker run --name mongo-node3 -d -p 37019:37019 --net saga-mongo-network mongo --replSet "rs0" --port 37019  
@@ -91,7 +91,7 @@ Api port: 3002
 Swagger page: http://localhost:3002/api/  
 
 ### Book a trip SEC Service:
-npm install
-npm run coverage - istanbul coverage report
-npm run test - mocha test with html report 
+npm install  
+npm run coverage - istanbul coverage report   
+npm run test - mocha test with html report   
 
