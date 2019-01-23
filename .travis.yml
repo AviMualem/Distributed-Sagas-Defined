@@ -7,6 +7,9 @@ before_script:
   - docker-compose up -d
   - sleep 15
   - bash pre-test.sh
- 
+  - 
+  - cd ${TRAVIS_BUILD_DIR}/car-service && npm install && npm start
+  - cd ${TRAVIS_BUILD_DIR}/apartment-service	&& npm install && npm start
+  - cd ${TRAVIS_BUILD_DIR}/restaurant-service	&& npm install && npm start
 script:
-  - echo hello
+  - cd ${TRAVIS_BUILD_DIR}/book-trip-sec && npm run coverage && npm run test
