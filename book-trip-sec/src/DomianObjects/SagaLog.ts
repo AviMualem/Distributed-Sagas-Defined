@@ -17,6 +17,9 @@ const sagaStepSchema = new mongoose.Schema({
   }
   });
 
+
+  //By providing a unique index aroung sagaId serviceName and status we are protecting a non valid state.
+sagaStepSchema.index({sagaId: 1,serviceName:1, status: 1}, {unique: true, name: 'service_interaction_uniqueness'});
 export const sagaStepModel = mongoose.model('sagalogs', sagaStepSchema);
 
 

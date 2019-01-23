@@ -1,9 +1,20 @@
 import { ServiceInteractionManager } from './serviceIntegration';
 import { ConnectionRefusedError } from './CustomErrors/ConnectionRefusedError';
+import { SagaFailedToCompleteInTransactionModeError, TransactionModeSagaServiceErrorDetails, CommunicationType } from './CustomErrors/SagaFailedToCompleteInTransactionModeError';
+import { CompensationModeSagaServiceErrorDetails, SagaFailedToCompleteInCompensationModeError } from './CustomErrors/SagaFailedToCompleteInCompensationModeError';
 
 
 
-export async function InvokeSagaTransactionsLogic(serviceDetails:ServiceInteractionManager[]) : Promise<any>
+export class SagaInTransactionModeExecutionResult
+{
+   public AllResourcesWereSuccessfullyManipulated:boolean;
+   constructor(allResourcesWereSuccessfullyManipulated:boolean)
+   {
+     this.AllResourcesWereSuccessfullyManipulated = allResourcesWereSuccessfullyManipulated;
+   };
+}
+
+export async function InvokeSagaTransactionsLogic(serviceDetails:ServiceInteractionManager[]) : Promise<SagaInTransactionModeExecutionResult>
 {
   // in backwards recovery sagas, this method will be called only once due to the fact that after a first failure only compensation mode will be executed.
   const servicesThatCompletedSuccessfully: Array<ServiceInteractionManager> = new Array<ServiceInteractionManager>();
@@ -11,7 +22,7 @@ export async function InvokeSagaTransactionsLogic(serviceDetails:ServiceInteract
   //var logicalFailureDetectedDuringTransactionMode = false;
   let logicalFailureDetectedDuringTransactionMode = false;
   let unexpectedFailureOccuredInSagaTransacionMode = false;
-
+  let aggregatedServiceErrors = new Array<TransactionModeSagaServiceErrorDetails>();
   for(let i=0; i<serviceDetails.length; i++)
   {
     let httpResCode:number;
@@ -39,8 +50,10 @@ export async function InvokeSagaTransactionsLogic(serviceDetails:ServiceInteract
       }
       else 
       {
-        //any error besided service communication error will be thrown.
+        //any error beside service communication error will be thrown.
         unexpectedFailureOccuredInSagaTransacionMode = true;
+        aggregatedServiceErrors.push(new TransactionModeSagaServiceErrorDetails(CommunicationType.transaction,error,serviceDetails[i].serviceName));
+
       }
       break;
     }
@@ -57,9 +70,10 @@ export async function InvokeSagaTransactionsLogic(serviceDetails:ServiceInteract
         await serviceDetails[j].LogCompensationCommunicationStartedEvent();
         await serviceDetails[j].InvokeCompensationLogicAndLogCompensationCommunicationEndedEvent();
       }
-      catch
+      catch(error)
       {
         failureOccuerInCompensationValidation = true;
+        aggregatedServiceErrors.push(new TransactionModeSagaServiceErrorDetails(CommunicationType.compensation,error,serviceDetails[j].serviceName));
       }
     }
 
@@ -67,23 +81,33 @@ export async function InvokeSagaTransactionsLogic(serviceDetails:ServiceInteract
     {
       if(failureOccuerInCompensationValidation)
       {
-        throw new Error('unexpected failure happend. in addition failure detected in compensation logic')
+        //throw new Error('unexpected failure happend. in addition failure detected in compensation logic')
+        throw new SagaFailedToCompleteInTransactionModeError('failure happend in one of the services tx method. in addition at least one failure detected in compensation logic for relevant services',aggregatedServiceErrors);
       }
 
-      throw new Error('unexpected failure happend. saga transaction mode failed.')
+      //throw new Error('unexpected failure happend. saga transaction mode failed.')
+      throw new SagaFailedToCompleteInTransactionModeError('failure happend in one of the services tx method.',aggregatedServiceErrors);
+
     }
 
     if(failureOccuerInCompensationValidation)
     {
-      throw new Error('saga compensation logic failed / partially succeded .')
+      //throw new Error('saga compensation logic failed / partially succeded .')
+      throw new SagaFailedToCompleteInTransactionModeError('at least one failure detected in compensation logic for relevant services',aggregatedServiceErrors);
     }
+
+    return new SagaInTransactionModeExecutionResult(false);
+  }
+  else
+  {
+    return new SagaInTransactionModeExecutionResult(true);
   }
 }
 
 export async function InvokeSagaBackwordsRecoveryLogicFinal(sagaId:string, serviceDetails:ServiceInteractionManager[], sagaLog) :Promise<any>
 {
   var failureDetectedDuringCompensation : boolean = false;
-
+  const aggregatedErrors = new Array<CompensationModeSagaServiceErrorDetails>();
   for(let i=0; i<serviceDetails.length; i++)
   {
     try
@@ -146,12 +170,13 @@ export async function InvokeSagaBackwordsRecoveryLogicFinal(sagaId:string, servi
       console.log(e);
       //By using this appraoch we will try to compensate as many compnents as we can upon every execution of the rolling back logic.
       failureDetectedDuringCompensation = true;
+      aggregatedErrors.push(new CompensationModeSagaServiceErrorDetails(e,serviceDetails[i].serviceName));
     }
   }
 
   if (failureDetectedDuringCompensation)
   {
-    throw new Error ('the entire saga compensation logic wasnt successful!!');
+    throw new SagaFailedToCompleteInCompensationModeError ('A failure detected during compensation of one or more relevant service ',aggregatedErrors);
   }
 }
 

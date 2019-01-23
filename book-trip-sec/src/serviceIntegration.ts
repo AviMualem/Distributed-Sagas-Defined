@@ -48,7 +48,7 @@ export class ServiceInteractionManager
       }
       else
       {
-        throw new Error('Compensation communication can be completed only with http 200 code.')
+        throw new Error('Compensation communication can be completed only with http 200 code. returned code was ' + httpResCode)
       }
     } 
 }

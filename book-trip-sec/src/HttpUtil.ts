@@ -53,12 +53,12 @@ export async function InvokeHttpPostMethod(uri:string, body, timeoutImMs?: numbe
         const code  = e.error.statusCode as number;
         if(code===408)
         {
-          throw new SocketTimeoutError(e);
+          throw new SocketTimeoutError(uri +' ' +e);
         }
 
         if(code === 500)
         {
-          throw new InternalServerFailureError(e);
+          throw new InternalServerFailureError(uri +' ' +e);
         }
 
         else return code;
@@ -66,12 +66,12 @@ export async function InvokeHttpPostMethod(uri:string, body, timeoutImMs?: numbe
       
       if (e.error.code === 'ETIMEDOUT' || e.error.code === 'ESOCKETTIMEDOUT')
       {
-        throw new SocketTimeoutError(e);
+        throw new SocketTimeoutError(uri +' ' +e);
       }
 
       if (e.error.code === 'ECONNREFUSED')
       {
-        throw new ConnectionRefusedError(e);
+        throw new ConnectionRefusedError(uri +' ' +e);
       }
 
       //Throwing an other non expected exception.

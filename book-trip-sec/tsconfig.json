@@ -2,7 +2,7 @@
     "compilerOptions": {
       "lib": [ "es2015","dom" ],
       "module": "commonjs",
-      "declaration": false,
+      "declaration": true,
       "noImplicitAny": false,
       "removeComments": true,
       "noLib": false,
@@ -11,7 +11,7 @@
       "experimentalDecorators": true,
       "target": "es6",
       "sourceMap": true,
-      "allowJs": true,
+      "allowJs": false,
       "outDir": "./dist",
       "baseUrl": "./src"
     //   "paths": {

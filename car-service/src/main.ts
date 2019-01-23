@@ -4,6 +4,8 @@ import {DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   require('dotenv').config();
+  // console.log(require('dotenv').config().parsed)
+  // console.log('starting nest bootsrapping')
   const app = await NestFactory.create(AppModule);
   const options = new DocumentBuilder()
     .setTitle('Car Rental service')

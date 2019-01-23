@@ -1,0 +1,10 @@
+/mochawesome-report
+/src
+.env
+.npmignore
+/coverage
+/.nyc_output
+/.vscode
+/test
+tsconfig.json
+envTemplate.txt
