@@ -12,5 +12,5 @@ before_script:
   # - cd ${TRAVIS_BUILD_DIR}/apartment-service	&& npm install && npm start
   # - cd ${TRAVIS_BUILD_DIR}/restaurant-service	&& npm install && npm start
 script:
-  - echo hello
+  - curl -XGET localhost:3000/api
   #- cd ${TRAVIS_BUILD_DIR}/book-trip-sec && npm run coverage && npm run test
