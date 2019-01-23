@@ -9,7 +9,7 @@ before_script:
   - docker-compose up -d
   - sleep 15
   - bash pre-test.sh
-  - npm install -g tsc@3.0
+  - npm install -g typescript@3.0
   - cd ${TRAVIS_BUILD_DIR}/car-service && npm install && tsc && cd ./dist/src/ && cp ${TRAVIS_BUILD_DIR}/car-service/.env . 
   - cd ${TRAVIS_BUILD_DIR}/car-service/dist/src && node main.js &
   # - cd ${TRAVIS_BUILD_DIR}/apartment-service	&& npm install && npm start
