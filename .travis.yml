@@ -17,11 +17,14 @@ before_script:
   - docker exec -ti localmongo1 mongo --port 37017 --eval 'config={"_id":"rs0","members":[{"_id":0,"host":"localmongo1:37017"},{"_id":1,"host":"localmongo2:37018"},{"_id":2,"host":"localmongo3:37019"}]}; rs.initiate(config)'
   - bash pre-test.sh
   - npm install -g typescript@3.0
-  - cd ${TRAVIS_BUILD_DIR}/car-service 
-  - npm install && tsc && cd ${TRAVIS_BUILD_DIR}/car-service/dist && cp ${TRAVIS_BUILD_DIR}/car-service/.env . 
-  - cd ${TRAVIS_BUILD_DIR}/car-service/dist && node main.js
-  # - cd ${TRAVIS_BUILD_DIR}/apartment-service	&& npm install && npm start
-  # - cd ${TRAVIS_BUILD_DIR}/restaurant-service	&& npm install && npm start
+  - cd ${TRAVIS_BUILD_DIR}/car-service && npm install && tsc && cd ${TRAVIS_BUILD_DIR}/car-service/dist && cp ${TRAVIS_BUILD_DIR}/car-service/.env . 
+  - cd ${TRAVIS_BUILD_DIR}/car-service/dist && node main.js &
+  - cd ${TRAVIS_BUILD_DIR}/apartment-service && npm install && tsc && cd ${TRAVIS_BUILD_DIR}/apartment-service/dist && cp ${TRAVIS_BUILD_DIR}/apartment-service/.env . 
+  - cd ${TRAVIS_BUILD_DIR}/apartment-service/dist && node main.js &
+  - cd ${TRAVIS_BUILD_DIR}/restaurant-service && npm install && tsc && cd ${TRAVIS_BUILD_DIR}/restaurant-service/dist && cp ${TRAVIS_BUILD_DIR}/restaurant-service/.env . 
+  - cd ${TRAVIS_BUILD_DIR}/restaurant-service/dist && node main.js &
+  - cd ${TRAVIS_BUILD_DIR}/book-trip-sec && npm install
 script:
-  - curl -XGET localhost:3000/api
-  #- cd ${TRAVIS_BUILD_DIR}/book-trip-sec && npm run coverage && npm run test
+  #- curl -XGET localhost:3000/api
+  - npm run coverage 
+  - npm run test
