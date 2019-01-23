@@ -12,7 +12,7 @@ before_script:
   - npm install -g typescript@3.0
   - cd ${TRAVIS_BUILD_DIR}/car-service 
   - npm install && tsc && cd ${TRAVIS_BUILD_DIR}/car-service/dist && cp ${TRAVIS_BUILD_DIR}/car-service/.env . 
-  - cd ${TRAVIS_BUILD_DIR}/car-service/dist && node main.js &
+  - cd ${TRAVIS_BUILD_DIR}/car-service/dist && node main.js
   # - cd ${TRAVIS_BUILD_DIR}/apartment-service	&& npm install && npm start
   # - cd ${TRAVIS_BUILD_DIR}/restaurant-service	&& npm install && npm start
 script:
