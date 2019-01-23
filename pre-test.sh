@@ -2,10 +2,13 @@
 
 # Get container ports:
 DB_NAME=test
+MONGO_PORT1=37017
+MONGO_PORT2=37018
+MONGO_PORT3=37019
 
-for i in $(seq 1 1 3); do
-    eval "MONGO_PORT$i=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "27017/tcp") 0).HostPort}}' localmongo${i})"
-done
+echo 127.0.0.1 localmongo1 >> /etc/hosts
+echo 127.0.0.1 localmongo2 >> /etc/hosts
+echo 127.0.0.1 localmongo3 >> /etc/hosts
 
 CONNECTION_STRING="mongodb://localhost:${MONGO_PORT1},localhost:${MONGO_PORT2},localhost:${MONGO_PORT3}/${DB_NAME}?replicaSet=rs0"
 

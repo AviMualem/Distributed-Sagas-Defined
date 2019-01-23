@@ -3,25 +3,25 @@ services:
   mongo1:
     hostname: mongo1
     container_name: localmongo1
-    image: mongo:4.0-xenial
+    image: mongo
     ports:
-      - 27017
+      - 37017:37017
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    entrypoint: [ "/usr/bin/mongod", "--port", "37017", "--bind_ip_all", "--replSet", "rs0" ]
   mongo2:
     hostname: mongo2
     container_name: localmongo2
-    image: mongo:4.0-xenial
+    image: mongo
     ports:
-      - 27017
+      - 37018:37018
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    entrypoint: [ "/usr/bin/mongod", "--port", "37018", "--bind_ip_all", "--replSet", "rs0" ]
   mongo3:
     hostname: mongo3
     container_name: localmongo3
-    image: mongo:4.0-xenial
+    image: mongo
     ports:
-      - 27017
+      - 37019:37019
     restart: always
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    entrypoint: [ "/usr/bin/mongod", "--port", "37019", "--bind_ip_all", "--replSet", "rs0" ]
 
