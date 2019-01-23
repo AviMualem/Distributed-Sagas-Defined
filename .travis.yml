@@ -4,7 +4,7 @@ services:
   - docker
 
 before_script:
-  - docker-compose up
+  - docker-compose up -d
  
 script:
   - ping localmongo1
